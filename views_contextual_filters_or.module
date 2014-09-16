@@ -20,9 +20,7 @@ function views_contextual_filters_or_views_api() {
  * Implements hook_views_query_alter().
  */
 function views_contextual_filters_or_views_query_alter(&$view, &$query) {
-  if ((!isset($query->options['contextual_filters_or'])) || (!$query->options['contextual_filters_or'])) {
-    return;
+  if (!empty($query->options['contextual_filters_or'])) {
+    $query->where[0]['type'] = 'OR';
   }
-
-  $query->where[0]['type'] = 'OR';
 }
