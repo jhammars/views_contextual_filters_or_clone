@@ -12,7 +12,7 @@
  */
 function views_contextual_filters_or_views_api() {
   return array(
-    'api' => 3.0
+    'api' => 3,
   );
 }
 
