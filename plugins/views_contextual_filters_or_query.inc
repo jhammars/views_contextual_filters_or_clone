@@ -36,10 +36,12 @@ class views_contextual_filters_or_query extends views_plugin_query_default {
   }
 
   /**
-   * Add a complex WHERE clause to the query.
+   * Add a simple WHERE clause to the query. The caller is responsible for
+   * ensuring that all fields are fully qualified (TABLE.FIELD) and that
+   * the table already exists in the query.
    */
-  function add_where_expression($group, $snippet, $args = array()) {
-    parent::add_where_expression($group, $snippet, $args);
+  function add_where($group, $field, $value = NULL, $operator = NULL) {
+    parent::add_where($group, $field, $value, $operator);
 
     // Check for a group.
     if (isset($this->where[$group])) {
