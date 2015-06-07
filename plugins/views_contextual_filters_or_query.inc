@@ -49,4 +49,17 @@ class views_contextual_filters_or_query extends views_plugin_query_default {
       $this->set_where_group($op, $group);
     }
   }
+
+  /**
+   * Add a complex WHERE clause to the query.
+   */
+  function add_where_expression($group, $snippet, $args = array()) {
+    parent::add_where_expression($group, $snippet, $args);
+
+    // Check for a group.
+    if (isset($this->where[$group])) {
+      $op = $this->options['contextual_filters_or'] ? 'OR' : 'AND';
+      $this->set_where_group($op, $group);
+    }
+  }
 }
