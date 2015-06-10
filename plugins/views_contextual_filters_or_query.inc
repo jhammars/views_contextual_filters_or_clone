@@ -44,7 +44,7 @@ class views_contextual_filters_or_query extends views_plugin_query_default {
     parent::add_where($group, $field, $value, $operator);
 
     // Check for a group.
-    if (isset($this->where[$group])) {
+    if ($group === 0 && isset($this->where[$group])) {
       $op = $this->options['contextual_filters_or'] ? 'OR' : 'AND';
       $this->set_where_group($op, $group);
     }
@@ -57,7 +57,7 @@ class views_contextual_filters_or_query extends views_plugin_query_default {
     parent::add_where_expression($group, $snippet, $args);
 
     // Check for a group.
-    if (isset($this->where[$group])) {
+    if ($group === 0 && isset($this->where[$group])) {
       $op = $this->options['contextual_filters_or'] ? 'OR' : 'AND';
       $this->set_where_group($op, $group);
     }
