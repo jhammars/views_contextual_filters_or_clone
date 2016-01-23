@@ -62,9 +62,12 @@ class views_contextual_filters_or_search_api_query extends SearchApiViewsQuery {
         if (!empty($group['conditions']) || !empty($group['filters'])) {
           $group += array('type' => 'AND');
 
-          // For filters without a group, we want to always add them directly to
-          // the query.
-          $filter = ($group_id === '') ? $this->query : $this->query->createFilter($group['type']);
+          if ($group_id === '') {
+            $filter = $this->options['contextual_filters_or'] ? $this->query->createFilter('OR') : $this->query;
+          }
+          else {
+            $filter = $this->query->createFilter($group['type']);
+          }
 
           if (!empty($group['conditions'])) {
             foreach ($group['conditions'] as $condition) {
@@ -73,9 +76,6 @@ class views_contextual_filters_or_search_api_query extends SearchApiViewsQuery {
             }
           }
           if (!empty($group['filters'])) {
-            if ($this->options['contextual_filters_or']) {
-              $filter = $this->query->createFilter('OR');
-            }
             foreach ($group['filters'] as $nested_filter) {
               $filter->filter($nested_filter);
             }
