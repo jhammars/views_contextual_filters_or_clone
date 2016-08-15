@@ -7,16 +7,15 @@
  * This is the main module file for Views Contextual Filters OR.
  */
 
-
 /**
- * Implements hook_views_plugins_alter().
+ * Implements hook_views_plugins_query_alter().
  */
-function views_contextual_filters_or_views_plugins_alter(&$plugins) {
-  if (!empty($plugins['query']['views_query'])) {
-    $plugins['query']['views_query']['handler'] = 'views_contextual_filters_or_query';
+function views_contextual_filters_or_views_plugins_query_alter(array &$plugins) {
+  if (!empty($plugins['views_query'])) {
+    $plugins['views_query']['class'] = 'Drupal\views_contextual_filters_or\Plugin\views\query\ExtendedSql';
   }
 
-  if (!empty($plugins['query']['search_api_views_query'])) {
-    $plugins['query']['search_api_views_query']['handler'] = 'views_contextual_filters_or_search_api_query';
+  if (!empty($plugins['search_api_query'])) {
+    $plugins['search_api_query']['class'] = 'Drupal\views_contextual_filters_or\Plugin\views\query\ExtendedSearchApiQuery';
   }
 }

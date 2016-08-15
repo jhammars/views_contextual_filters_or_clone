@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-Views Contextual Filters OR for Drupal 7.x
+Views Contextual Filters OR for Drupal 8.x
 -------------------------------------------------------------------------------
 Description:
 The module provides a views plugin to modify query to support OR conditions for contextual filters.
