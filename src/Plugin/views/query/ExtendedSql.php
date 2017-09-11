@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Defines the alter query object.
- */
-
 namespace Drupal\views_contextual_filters_or\Plugin\views\query;
 
 use Drupal\views\Plugin\views\query\Sql;
