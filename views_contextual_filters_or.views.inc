@@ -19,3 +19,12 @@ function views_contextual_filters_or_views_plugins_query_alter(array &$plugins) 
     $plugins['search_api_query']['class'] = 'Drupal\views_contextual_filters_or\Plugin\views\query\ExtendedSearchApiQuery';
   }
 }
+
+/**
+ * Implements hook_views_plugins_display_alter().
+ */
+function views_contextual_filters_or_views_plugins_display_alter(array &$plugins) {
+  if (!empty($plugins['entity_reference'])) {
+    $plugins['entity_reference']['class'] = 'Drupal\views_contextual_filters_or\Plugin\views\display\ExtendedEntityReference';
+  }
+}
